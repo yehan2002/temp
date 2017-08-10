@@ -4,11 +4,11 @@ folder and delete the folder when the
 script exits.The folder is created in the
 /tmp directory with a unique folder name.
 
-##Usage:
+## Usage:
  - temp.path : location of the folder (a string)
  - temp.dirname : name of dir (a string)
 
-##Example:
+## Example:
 ```import temp
 f = open(temp.path + '/hello','a')
 f.write('hello world')
