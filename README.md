@@ -15,3 +15,6 @@ f.write('hello world')
 f.close()
 raw_input('press enter to exit the program')
 ```
+## Todo
+- [x] Add intro to the module
+- [] Cross platform support
