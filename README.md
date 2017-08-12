@@ -15,7 +15,8 @@ script exits.The folder is created in the
  - temp.open(filename,method='a') : open a file with the specified method using open() and returns the file for reading or writing
 
 ## Example:
-```python import temp
+```python
+import temp
 f = temp.open('/hello','a')
 f.write('hello world')
 f.close()
