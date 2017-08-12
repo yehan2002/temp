@@ -22,4 +22,4 @@ f.write('hello world')
 f.close()
 raw_input('press enter to exit the program')
 ```
-  <a href="https://github.com/yehan2002/tmp/releases" class="btn" style='background-color:#15915F;text-align:center;margin-left:40%;margin-right:40%;width:25%;'>Download now</a>
+  <a href="https://github.com/yehan2002/tmp/releases" class="btn" style='background-color:#15915F;text-align:center;margin-left:40%;width:15em;'>Download now</a>
