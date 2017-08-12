@@ -1,5 +1,5 @@
 # Tmp
-A simple module used to make a temporary 
+A simple python module used to make a temporary 
 folder and delete the folder when the
 script exits.The folder is created in the
 /tmp directory with a unique folder name.
@@ -22,4 +22,4 @@ f.write('hello world')
 f.close()
 raw_input('press enter to exit the program')
 ```
-  <a href="https://github.com/yehan2002/tmp/releases" class="btn" style='background-color:#15915F;text-align:center;margin-left:40%;margin-right:40%;'>Download now</a>
+  <a href="https://github.com/yehan2002/tmp/releases" class="btn" style='background-color:#15915F;text-align:center;margin-left:40%;margin-right:40%;width:10%;'>Download now</a>
