@@ -25,4 +25,4 @@ raw_input('press enter to exit the program')
 ## Todo
 - [x] Add intro to the module
 - [ ] Cross platform support
-- ~~[ ] join module into easypy~~
+- ~~ [ ] join module into easypy ~~
