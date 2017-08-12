@@ -3,6 +3,7 @@ A simple module used to make a temporary
 folder and delete the folder when the
 script exits.The folder is created in the
 /tmp directory with a unique folder name.
+##### Currently only works on linux
 
 ## Usage:
  - temp.path : location of the folder (a string)
