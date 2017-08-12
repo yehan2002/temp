@@ -1,4 +1,4 @@
-# Tmp
+<a href="https://github.com/yehan2002/tmp" class="btn">View on GitHub</a># Tmp
 A simple module used to make a temporary 
 folder and delete the folder when the
 script exits.The folder is created in the
@@ -26,3 +26,4 @@ raw_input('press enter to exit the program')
 - [x] Add intro to the module
 - [ ] Cross platform support
 - ~~join module into easypy~~
+<a href="https://github.com/yehan2002/tmp/releases" class="btn">Download Now</a>
