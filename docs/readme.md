@@ -23,4 +23,4 @@ f.close()
 raw_input('press enter to exit the program')
 ```
 ## Download
-  <a href="https://github.com/yehan2002/tmp/releases" class="btn">View on GitHub</a>
+  <a href="https://github.com/yehan2002/tmp/releases" class="btn" style='background-color:#15915F;text-align:center;'>Download now</a>
