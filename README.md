@@ -11,7 +11,7 @@ script exits.The folder is created in the
  - temp.mkdir(dirname) : create a new directory inside the temporary directory
  - temp.mkfile(filename) : create a new file inside the temporary directory
  - temp.rm(filename) : delete a folder or file inside the temporary directory
- - temp.join(path) : join given str or list or tuple with the location of the temporary directory using os.path.join()
+ - temp.join(path) : join given str with the location of the temporary directory using os.path.join()
  - temp.open(filename,method='a') : open a file with the specified method using open() and returns the file for reading or writing
 
 ## Example:
