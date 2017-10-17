@@ -1,0 +1,6 @@
+site_name: Tmp
+pages:
+    - Installation: index.md
+    - Getting started: basic.md
+    - Quick Reference: ref.md
+theme: readthedocs
