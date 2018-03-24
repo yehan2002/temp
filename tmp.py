@@ -1,10 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import subprocess
 import __main__ as main
 import os
 import atexit
+import tempfile
+import shutil
+import time
 
 '''
 A simple module used to make a temporary
@@ -24,31 +26,49 @@ temp.join(path) : join given str or list
     or tuple with the location of the
     temporary directory using
     os.path.join()
-temp.open(filename,method='a') : open a
+temp.tmpopen(filename,method='a') : open a
     file with the specified method using
     open() and returns the file for
     reading or writing
 Example:
-import temp
-f = temp.open('/hello','a')
+import tmp
+t = tmp.tmp('tmpdir')
+f = t.tmpopen('/hello','a')
 f.write('hello world')
 f.close()
 raw_input('press enter to exit the program')
 '''
-class __tempfile__:
-    def __init__(self):
-        idof = subprocess.check_output(['date', '+%s%N'])
-        idof = idof.replace('\n','')
+class tmp:
+    def __init__(self,path=False):
+        if not path:
+            idof = str(int(time.time()*1000000))
+            idof = idof.replace('\n','')
+            current_temp = tempfile.gettempdir()
+            self.shutil = shutil
+            try:
+                name = os.path.split(main.__file__)[1].replace('.py', '')
+            except AttributeError:
+                name = os.path.split(__file__)[1].replace('.py', '')
+            self.dirname = name + str(idof)
+            self.path = os.path.join(current_temp, idof )
+        else:
+            current_temp = tempfile.gettempdir()
+            self.shutil = shutil
+            self.path = os.path.join(current_temp,path )
+            self.dirname = path
+        self._mktmpdir()
+        atexit.register(self._deldir)
+    def delete(self,filename='',join=True):
+        if join:
+            filename = self.join(filename)
         try:
-            name = os.path.split(main.__file__)[1].replace('.py', '')
-        except AttributeError:
-            name = os.path.split(__file__)[1].replace('.py', '')
-        self.idof = name + str(idof)
-        self.path = os.path.join('/tmp', self.idof )
-    def mktmpdir(self):
+            shutil.rmtree(filename)
+        except OSError:
+            os.remove(filename)
+    def _mktmpdir(self):
         os.mkdir(self.path)
-    def deldir(self):
-        os.system('rm -r ' + self.path)
+    def _deldir(self):
+        shutil.rmtree(self.path)
     def mkdir(self,name):
         path = os.path.join(self.path,name)
         os.mkdir(path)
@@ -57,10 +77,12 @@ class __tempfile__:
         path = os.path.join(self.path,name)
         open(path,'a').close()
         return path
-    def delit(self,file):
-        path = os.path.join(self.path,file)
-        os.system('rm -r -f ' + path)
-    def pathcreate(self,pathof):
+    def rm(self,filen):
+        if filen[0] == os.sep:
+            filen = filen[1:]
+        path = os.path.join(self.path,filen)
+        self.delete(path)
+    def join(self,*pathof):
         if type(pathof) == str:
             pathof = [pathof]
         elif type(pathof) == tuple:
@@ -68,8 +90,9 @@ class __tempfile__:
         elif type(pathof) == list:
             pass
         else:
-            error = ('Expected a string or a list or a turple.Recived a' +
-            str(type(pathof)).replace("<type '").replace("'>"))
+            typerecevied = str(type(pathof)).replace("<type '").replace("'>")
+            error = (
+            'Expected a string or a list or a turple.Recived a' + typerecevied)
             raise TypeError(error)
         pathof2 = []
         for item in pathof:
@@ -82,17 +105,17 @@ class __tempfile__:
         base.extend(pathof)
         exec("base = os.path.join"+str(tuple(base)))
         return base
-    def openfile(self,file,method='a'):
-        pathof = self.pathcreate(file)
+    def tmpopen(self,file,method='a'):
+        pathof = self.join(file)
         return open(pathof,method)
-__temp__ = __tempfile__()
-atexit.register(__temp__.deldir)
-__temp__.mktmpdir()
-path = __temp__.path
-dirname  = __temp__.idof
-mkdir = __temp__.mkdir
-mkfile = __temp__.mkfile
-rm = __temp__.delit
-join = __temp__.pathcreate
-open = __temp__.openfile
-del(__temp__)
+class temp:
+    def __init__(self):
+        __temp__ = tmp()
+        self.path = __temp__.path
+        self.dirname  = __temp__.idof
+        self.mkdir = __temp__.mkdir
+        self.mkfile = __temp__.mkfile
+        self.rm = __temp__.rm
+        self.join = __temp__.join
+        self.tmpopen = __temp__.tmpopen
+        del(__temp__)
